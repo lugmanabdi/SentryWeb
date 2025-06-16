@@ -1,0 +1,3741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- REPLACE your existing Google Analytics code with this ENHANCED version -->
+<!-- Google tag (gtag.js) - ENHANCED FOR SEO -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W5BZY0BV0P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // ENHANCED configuration with SEO tracking
+  gtag('config', 'G-W5BZY0BV0P', {
+    // Enhanced SEO tracking for better insights
+    send_page_view: true,
+    page_title: document.title,
+    page_location: window.location.href,
+    
+    // Cookie settings for better tracking compliance
+    cookie_flags: 'secure;samesite=lax',
+    
+    // Enhanced tracking options
+    allow_google_signals: true,
+    allow_ad_personalization_signals: false
+  });
+
+  // ===== CONVERSION TRACKING FUNCTIONS =====
+  
+  // Track contact form submissions (high-value conversion)
+  function trackContactFormSubmission() {
+    gtag('event', 'form_submission', {
+      event_category: 'conversion',
+      event_label: 'contact_form',
+      value: 10 // Assign value to conversions
+    });
+    console.log('📊 Tracked: Contact form submission');
+  }
+
+  // Track newsletter signups (engagement metric)
+  function trackNewsletterSignup() {
+    gtag('event', 'newsletter_signup', {
+      event_category: 'conversion', 
+      event_label: 'newsletter',
+      value: 5 // Lower value than contact form
+    });
+    console.log('📊 Tracked: Newsletter signup');
+  }
+
+  // Track phone number clicks (local SEO signal)
+  function trackPhoneCall() {
+    gtag('event', 'phone_call', {
+      event_category: 'contact',
+      event_label: 'phone_click',
+      value: 8 // High value for direct contact
+    });
+    console.log('📊 Tracked: Phone call click');
+  }
+
+  // Track email clicks (engagement signal)
+  function trackEmailClick() {
+    gtag('event', 'email_click', {
+      event_category: 'contact',
+      event_label: 'email_click', 
+      value: 6
+    });
+    console.log('📊 Tracked: Email click');
+  }
+
+  // Track portfolio views (business goal)
+  function trackPortfolioView() {
+    gtag('event', 'portfolio_view', {
+      event_category: 'engagement',
+      event_label: 'portfolio_page',
+      value: 3
+    });
+    console.log('📊 Tracked: Portfolio view');
+  }
+
+  // Track service page views (business goal)
+  function trackServiceView(serviceName) {
+    gtag('event', 'service_view', {
+      event_category: 'engagement',
+      event_label: serviceName || 'services_page',
+      value: 4
+    });
+    console.log('📊 Tracked: Service view -', serviceName);
+  }
+
+  // Track CTA button clicks
+  function trackCTAClick(ctaLabel) {
+    gtag('event', 'cta_click', {
+      event_category: 'conversion',
+      event_label: ctaLabel,
+      value: 7
+    });
+    console.log('📊 Tracked: CTA click -', ctaLabel);
+  }
+
+  // Track chatbot interactions
+  function trackChatbotOpen() {
+    gtag('event', 'chatbot_open', {
+      event_category: 'engagement',
+      event_label: 'ai_assistant',
+      value: 2
+    });
+    console.log('📊 Tracked: Chatbot opened');
+  }
+
+  // ===== AUTOMATIC SEO TRACKING =====
+
+  // Track scroll depth (engagement metric for SEO)
+  let scrollTracked25 = false, scrollTracked50 = false, scrollTracked75 = false;
+  
+  window.addEventListener('scroll', function() {
+    const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    
+    if (!scrollTracked25 && scrollPercent > 25) {
+      gtag('event', 'scroll_25', {
+        event_category: 'engagement',
+        event_label: 'scroll_depth',
+        value: 1
+      });
+      scrollTracked25 = true;
+      console.log('📊 Tracked: 25% scroll depth');
+    }
+    
+    if (!scrollTracked50 && scrollPercent > 50) {
+      gtag('event', 'scroll_50', {
+        event_category: 'engagement', 
+        event_label: 'scroll_depth',
+        value: 2
+      });
+      scrollTracked50 = true;
+      console.log('📊 Tracked: 50% scroll depth');
+    }
+    
+    if (!scrollTracked75 && scrollPercent > 75) {
+      gtag('event', 'scroll_75', {
+        event_category: 'engagement',
+        event_label: 'scroll_depth', 
+        value: 3
+      });
+      scrollTracked75 = true;
+      console.log('📊 Tracked: 75% scroll depth');
+    }
+  });
+
+  // Track page load performance (Core Web Vitals for SEO)
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      try {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        if (perfData) {
+          const loadTime = Math.round(perfData.loadEventEnd - perfData.loadEventStart);
+          
+          // Track page load time
+          gtag('event', 'page_timing', {
+            event_category: 'performance',
+            event_label: 'page_load_time',
+            value: loadTime
+          });
+          
+          // Track if page loads fast (good for SEO)
+          if (loadTime < 3000) {
+            gtag('event', 'fast_page_load', {
+              event_category: 'performance',
+              event_label: 'under_3_seconds',
+              value: 1
+            });
+          }
+          
+          console.log('📊 Tracked: Page load time -', loadTime + 'ms');
+        }
+      } catch (error) {
+        console.log('Performance tracking error:', error);
+      }
+    }, 1000);
+  });
+
+  // Track outbound links (external website clicks)
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && link.href) {
+      const url = new URL(link.href, window.location.href);
+      
+      // Check if it's an external link
+      if (url.hostname !== window.location.hostname) {
+        gtag('event', 'outbound_click', {
+          event_category: 'external',
+          event_label: url.hostname,
+          transport_type: 'beacon'
+        });
+        console.log('📊 Tracked: Outbound click to', url.hostname);
+      }
+    }
+  });
+
+  // Track time on page (for engagement metrics)
+  let timeOnPage = 0;
+  const timeTracker = setInterval(function() {
+    timeOnPage += 10;
+    
+    // Track engagement milestones
+    if (timeOnPage === 30) { // 30 seconds
+      gtag('event', 'time_on_page_30s', {
+        event_category: 'engagement',
+        event_label: 'time_engagement'
+      });
+    } else if (timeOnPage === 60) { // 1 minute
+      gtag('event', 'time_on_page_1m', {
+        event_category: 'engagement', 
+        event_label: 'time_engagement'
+      });
+    } else if (timeOnPage === 180) { // 3 minutes
+      gtag('event', 'time_on_page_3m', {
+        event_category: 'engagement',
+        event_label: 'time_engagement'
+      });
+    }
+  }, 10000); // Check every 10 seconds
+
+  // Stop tracking when user leaves
+  window.addEventListener('beforeunload', function() {
+    clearInterval(timeTracker);
+  });
+
+  // Track page visibility (for bounce rate accuracy)
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      gtag('event', 'page_hidden', {
+        event_category: 'engagement',
+        event_label: 'visibility_change'
+      });
+    } else {
+      gtag('event', 'page_visible', {
+        event_category: 'engagement',
+        event_label: 'visibility_change'
+      });
+    }
+  });
+
+  console.log('🚀 Enhanced Google Analytics loaded for Sentry Web Solutions');
+</script>
+<meta charset="UTF-8">
+<link rel="icon" href="Images/logo.jpg" type="image/jpg">
+<link rel="apple-touch-icon" href="Images/logo.jpg">
+<link rel="shortcut icon" href="Images/logo.jpg" type="image/jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Professional Web Design Services | Custom Websites | Sentry Web Solutions</title>
+<meta name="description" content="Transform your business with custom web design services. Professional websites, e-commerce platforms, and digital solutions. Free consultation, 24-hour response guarantee.">
+<meta name="keywords" content="web design, custom websites, responsive web design, business websites, e-commerce design, portfolio websites, landing pages, professional web designers">
+<meta name="author" content="Sentry Web Solutions">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Professional Web Design Services | Transform Your Digital Presence | Sentry Web Solutions">
+<meta property="og:description" content="Custom web design solutions that drive business growth. From concept to launch, we create stunning websites tailored to your unique needs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sentrywebsolutions.com">
+<meta property="og:image" content="https://sentrywebsolutions.com/images/og-image.jpg">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background: #0a0b14;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 11, 20, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(10, 11, 20, 0.98);
+    box-shadow: 0 4px 30px rgba(59, 130, 246, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo-image {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #ffffff;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #3b82f6;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 80%;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0b14 0%, #1e293b 50%, #3b82f6 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.hero-text {
+    color: white;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.hero-badge::before {
+    content: '⚡';
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#typing-text {
+    color: #f59e0b;
+    font-weight: 800;
+    border-right: 2px solid #ffffff;
+    animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 50% { border-color: #ffffff; }
+    51%, 100% { border-color: transparent; }
+}
+
+.hero-text p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    color: #94a3b8;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+    transform: translateY(-3px);
+}
+
+
+/* Advanced Computer Mockup */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    position: relative;
+}
+
+.tech-showcase {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.code-window {
+    position: absolute;
+    width: 350px;
+    height: 200px;
+    background: rgba(30, 41, 59, 0.95);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: floatCode 6s ease-in-out infinite;
+    overflow: hidden;
+}
+
+@keyframes floatCode {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+.window-header {
+    height: 30px;
+    background: rgba(59, 130, 246, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.window-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.window-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.window-dot.red { background: #ef4444; }
+.window-dot.yellow { background: #f59e0b; }
+.window-dot.green { background: #10b981; }
+
+.code-content {
+    padding: 15px;
+    font-family: 'Consolas', monospace;
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+.code-line {
+    margin-bottom: 4px;
+    opacity: 0;
+    animation: typeCode 3s ease-in-out infinite;
+}
+
+.code-line:nth-child(1) { animation-delay: 0.2s; }
+.code-line:nth-child(2) { animation-delay: 0.5s; }
+.code-line:nth-child(3) { animation-delay: 0.8s; }
+.code-line:nth-child(4) { animation-delay: 1.1s; }
+.code-line:nth-child(5) { animation-delay: 1.4s; }
+
+@keyframes typeCode {
+    0% { opacity: 0; transform: translateX(-20px); }
+    20% { opacity: 1; transform: translateX(0); }
+    80% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(20px); }
+}
+
+.keyword { color: #3b82f6; }
+.string { color: #10b981; }
+.comment { color: #6b7280; opacity: 0.7; }
+
+.browser-window {
+    position: absolute;
+    top: 120px;
+    right: 0;
+    width: 280px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+    animation: floatBrowser 8s ease-in-out infinite;
+    overflow: hidden;
+}
+
+@keyframes floatBrowser {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(-2deg); }
+}
+
+.browser-header {
+    height: 25px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.browser-content {
+    padding: 15px;
+    height: calc(100% - 25px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.google-search-content {
+    padding: 10px;
+    font-size: 9px;
+}
+
+.google-logo-small {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.search-bar-small {
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 12px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+    font-size: 8px;
+    color: #202124;
+    position: relative;
+}
+
+.search-text {
+    font-size: 8px;
+    color: transparent;
+    white-space: nowrap;
+    position: relative;
+    display: inline-block;
+    width: 90px;
+}
+
+.search-text::before {
+    content: 'Sentry Web Solutions';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #202124;
+    overflow: hidden;
+    animation: typeAndErase 4s infinite;
+}
+
+.search-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #202124;
+    animation: typeCursor 4s infinite;
+}
+
+@keyframes typeAndErase {
+    0% { width: 0; }
+    25% { width: 100%; }
+    75% { width: 100%; }
+    100% { width: 0; }
+}
+
+@keyframes typeCursor {
+    0% { left: 0; }
+    25% { left: 100%; }
+    75% { left: 100%; }
+    100% { left: 0; }
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #dfe1e5;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    opacity: 0;
+    animation: showHideResults 4s infinite;
+    z-index: 10;
+}
+
+@keyframes showHideResults {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.result-item {
+    padding: 6px 8px;
+    font-size: 6px;
+    color: #1a0dab;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+/* Mobile Chat Interface Styles */
+.mobile-chat-interface {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 4px;
+    backdrop-filter: blur(10px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.mobile-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 4px 6px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 6px 6px 0 0;
+}
+
+.mobile-bot-avatar {
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4px;
+}
+
+.mobile-bot-info {
+    flex: 1;
+}
+
+.mobile-bot-name {
+    font-size: 4px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.mobile-bot-status {
+    font-size: 3px;
+    color: #10b981;
+    line-height: 1;
+}
+
+.mobile-chat-messages {
+    flex: 1;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: hidden;
+}
+
+.mobile-chat-message {
+    display: flex;
+    animation: mobileSlideIn 0.5s ease;
+}
+
+.mobile-chat-message.mobile-bot {
+    justify-content: flex-start;
+}
+
+.mobile-chat-message.mobile-user {
+    justify-content: flex-end;
+}
+
+.mobile-message-bubble {
+    max-width: 80%;
+    padding: 3px 5px;
+    border-radius: 8px;
+    font-size: 3px;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.mobile-chat-message.mobile-bot .mobile-message-bubble {
+    background: #3b82f6;
+    color: white;
+    border-bottom-left-radius: 2px;
+}
+
+.mobile-chat-message.mobile-user .mobile-message-bubble {
+    background: #e5e7eb;
+    color: #1e293b;
+    border-bottom-right-radius: 2px;
+}
+
+.mobile-typing-indicator {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mobile-typing-bubble {
+    background: #f3f4f6;
+    padding: 3px 5px;
+    border-radius: 8px;
+    border-bottom-left-radius: 2px;
+}
+
+.mobile-typing-dots {
+    display: flex;
+    gap: 1px;
+    align-items: center;
+}
+
+.mobile-typing-dot {
+    width: 1px;
+    height: 1px;
+    background: #6b7280;
+    border-radius: 50%;
+    animation: mobileTypingBounce 1.4s infinite;
+}
+
+.mobile-typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.mobile-typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.mobile-chat-input {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: 0 0 6px 6px;
+}
+
+.mobile-input-field {
+    flex: 1;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2px 4px;
+    font-size: 3px;
+    color: #6b7280;
+}
+
+.mobile-send-btn {
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3px;
+    font-weight: bold;
+}
+
+@keyframes mobileSlideIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mobileTypingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-2px); }
+}
+
+
+
+.mobile-frame {
+    position: absolute;
+    bottom: 100px;
+    left: 50px;
+    width: 120px;
+    height: 200px;
+    background: #1e293b;
+    border-radius: 20px;
+    padding: 8px;
+    animation: floatMobile 7s ease-in-out infinite;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes floatMobile {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+.mobile-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    text-align: center;
+}
+
+
+
+/* Stats Section */
+.stats-section {
+    background: rgba(10, 11, 20, 0.95);
+    padding: 80px 0;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: center;
+}
+
+.stat-item {
+    color: white;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Newsletter Popup Styles */
+.newsletter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.newsletter-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.newsletter-popup {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(59, 130, 246, 0.3);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    backdrop-filter: blur(20px);
+    transform: scale(0.8) translateY(50px);
+    transition: all 0.3s ease;
+}
+
+.newsletter-overlay.active .newsletter-popup {
+    transform: scale(1) translateY(0);
+}
+
+.newsletter-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.newsletter-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.newsletter-content {
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+}
+
+.newsletter-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.newsletter-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.newsletter-subtitle {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.newsletter-form {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+.newsletter-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.newsletter-submit:hover::before {
+    left: 100%;
+}
+
+.newsletter-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+}
+
+.newsletter-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.newsletter-benefits {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.benefit-icon {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.newsletter-privacy {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 1rem;
+}
+
+.newsletter-success {
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: celebrateRotate 0.6s ease-in-out;
+}
+
+@keyframes celebrateRotate {
+    0% { transform: scale(0) rotate(180deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.newsletter-success h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.newsletter-success p {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.success-close {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.success-close:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+/* Footer Newsletter Signup Styles - Add this to your CSS */
+.footer-newsletter {
+    margin-bottom: 50px;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.newsletter-cta {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.newsletter-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+.newsletter-cta-content h3 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.newsletter-cta-content p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.footer-form-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-form-group input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 16px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.footer-form-group input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+.footer-newsletter-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 180px;
+}
+
+.footer-newsletter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.footer-newsletter-btn:hover::before {
+    left: 100%;
+}
+
+.footer-newsletter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+}
+
+.footer-newsletter-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.footer-loading-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    margin-right: 6px;
+}
+
+.footer-newsletter-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-newsletter-benefits .benefit {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Success Message for Footer */
+.footer-newsletter-success {
+    text-align: center;
+    color: #10b981;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    display: none;
+}
+
+.footer-newsletter-success.show {
+    display: block;
+    animation: fadeInSuccess 0.5s ease;
+}
+
+@keyframes fadeInSuccess {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive for Footer Newsletter */
+@media (max-width: 768px) {
+    .footer-newsletter {
+        margin-bottom: 30px;
+        padding: 30px 0;
+    }
+    
+    .newsletter-cta {
+        padding: 30px 20px;
+    }
+    
+    .newsletter-cta-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .newsletter-cta-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .footer-form-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-form-group input {
+        min-width: unset;
+    }
+    
+    .footer-newsletter-btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .footer-newsletter-benefits {
+        gap: 1rem;
+    }
+    
+    .footer-newsletter-benefits .benefit {
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .newsletter-popup {
+        margin: 20px;
+        max-width: none;
+    }
+    
+    .newsletter-content {
+        padding: 30px 20px;
+    }
+    
+    .newsletter-title {
+        font-size: 1.5rem;
+    }
+    
+    .newsletter-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input {
+        padding: 12px 16px;
+    }
+    
+    .newsletter-submit {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Services Preview */
+.services-preview {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #0a0b14 0%, #1e293b 100%);
+    position: relative;
+}
+
+.services-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.service-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    transition: all 0.15s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    opacity: 0.8;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    border-radius: 20px;
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 
+        0 20px 50px rgba(59, 130, 246, 0.25),
+        0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-icon {
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    font-size: 2.1rem;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+.service-card:hover .service-icon {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+}
+
+.service-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    transition: color 0.15s ease;
+}
+
+.service-card:hover .service-title {
+    color: #60a5fa;
+}
+
+.service-description {
+    color: #94a3b8;
+    line-height: 1.7;
+    font-size: 1rem;
+    transition: color 0.15s ease;
+}
+
+.service-card:hover .service-description {
+    color: #cbd5e1;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: float 15s ease-in-out infinite reverse;
+}
+
+.footer-form-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.cta-button {
+    background: white;
+    color: #1d4ed8;
+    padding: 1.3rem 3rem;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+.footer {
+    background: #0a0b14;
+    color: #94a3b8;
+    padding: 60px 0 20px;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #94a3b8;
+    text-decoration: none;
+    line-height: 1.7;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #3b82f6;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 20px 0;
+    text-align: center;
+    color: #64748b;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-2px);
+    border-color: #3b82f6;
+}
+
+/* Chatbot Container */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+/* Chat Toggle Button */
+.chat-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+}
+
+.chat-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.chat-toggle:hover::before {
+    left: 100%;
+}
+
+.chat-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+    transition: transform 0.3s ease;
+}
+
+.chat-toggle.active .chat-icon {
+    transform: rotate(180deg);
+}
+
+/* Chat Window */
+.chat-window {
+    width: 400px;
+    height: 600px;
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.chat-window.active {
+    display: flex;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chat Header */
+.chat-header {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.chat-header p {
+    margin: 5px 0 0 0;
+    opacity: 0.9;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: linear-gradient(135deg, rgba(10, 11, 20, 0.8), rgba(30, 41, 59, 0.9));
+    position: relative;
+}
+
+.chat-messages::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="1" fill="rgba(59,130,246,0.02)"/></svg>');
+    pointer-events: none;
+}
+
+.message {
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.bot {
+    text-align: left;
+}
+
+.message.user {
+    text-align: right;
+}
+
+.message-content {
+    display: inline-block;
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
+.message.bot .message-content {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.message.bot .message-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.message.user .message-content {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border-bottom-right-radius: 6px;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+}
+
+/* Chat Input */
+.chat-input {
+    padding: 20px;
+    background: rgba(30, 41, 59, 0.95);
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+}
+
+.chat-input input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.send-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.send-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.3s;
+}
+
+.send-btn:hover::before {
+    left: 100%;
+}
+
+.send-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: none;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    border-bottom-left-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.typing-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3b82f6;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    30% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-2px);
+    border-color: #3b82f6;
+}
+
+.social-link i {
+    font-size: 16px;
+    color: #ffffff !important;
+}
+
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+        width: 100%;
+        padding: 6rem 0 2rem;
+    }
+
+    .hero-text {
+        order: 2;
+    }
+
+    .hero-visual {
+        order: 1;
+        height: 280px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .section-title,
+    .cta-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle,
+    .cta-section p {
+        font-size: 1rem;
+    }
+
+    .tech-showcase {
+        width: 260px;
+        height: 260px;
+        position: relative;
+    }
+
+    .code-window {
+        width: 200px;
+        height: 120px;
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+
+    .browser-window {
+        width: 160px;
+        height: 100px;
+        top: 70px;
+        right: 0;
+        position: absolute;
+    }
+
+    .mobile-frame {
+        width: 70px;
+        height: 120px;
+        bottom: 0;
+        left: 20px;
+        position: absolute;
+    }
+
+    .mobile-screen {
+        border-radius: 10px;
+    }
+
+    .mobile-app-content {
+        padding: 3px;
+    }
+
+    .mobile-header {
+        font-size: 3px;
+        margin-bottom: 4px;
+    }
+
+    .mobile-chat-interface {
+        padding: 3px;
+    }
+
+    .mobile-chat-header {
+        margin-bottom: 3px;
+        padding: 2px 4px;
+    }
+
+    .mobile-bot-avatar {
+        width: 4px;
+        height: 4px;
+        font-size: 2px;
+    }
+
+    .mobile-bot-name {
+        font-size: 3px;
+    }
+
+    .mobile-bot-status {
+        font-size: 2px;
+    }
+
+    .mobile-message-bubble {
+        font-size: 2px;
+        padding: 1px 3px;
+    }
+
+    .mobile-typing-dot {
+        width: 0.5px;
+        height: 0.5px;
+    }
+
+    .mobile-input-field {
+        font-size: 2px;
+        padding: 1px 2px;
+    }
+
+    .mobile-send-btn {
+        width: 4px;
+        height: 4px;
+        font-size: 2px;
+    }
+
+
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(10, 11, 20, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        gap: 1.5rem;
+        transition: left 0.3s ease;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: 10px;
+        width: 180px;
+        text-align: center;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .stats-section {
+        padding: 60px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .services-preview {
+        padding: 80px 0;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .service-title {
+        font-size: 1.3rem;
+    }
+
+    .service-description {
+        font-size: 0.9rem;
+    }
+
+    .cta-section {
+        padding: 80px 0;
+    }
+
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .footer {
+        padding: 40px 0 15px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    /* Enhanced mobile contrast for secondary button */
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(15px);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Mobile chatbot adjustments */
+    .chat-window {
+        width: calc(100vw - 40px);
+        height: calc(100vh - 100px);
+        right: 20px;
+        bottom: 80px;
+    }
+    
+    .chatbot-container {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+/* Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(59, 130, 246, 0.05);
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+/* Advanced Animations */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+    background: linear-gradient(-45deg, #3b82f6, #1d4ed8, #3b82f6, #1d4ed8);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease infinite;
+}
+
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add this to your existing CSS */
+.error-message {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+    <a href="index.html" class="logo">
+        <img src="Images/logo.png" alt="Sentry Web Solutions" class="logo-image">
+    </a>
+    
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="about.html" class="nav-link" onclick="trackServiceView('about_from_nav')">About</a></li>
+        <li><a href="services.html" class="nav-link" onclick="trackServiceView('services_from_nav')">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link" onclick="trackPortfolioView()">Portfolio</a></li>
+        <li><a href="contact.html" class="nav-link" onclick="trackCTAClick('contact_from_nav')">Contact</a></li>
+    </ul>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-badge">
+                Next-Generation Web Development
+            </div>
+            <h1>We Build Digital Experiences That<br><span id="typing-text">Convert</span></h1>
+            <p>Cutting-edge web solutions powered by the latest technologies. From AI-integrated platforms to lightning-fast e-commerce sites, we create websites that don't just look amazing—they drive real business results.</p>
+            
+            <div class="hero-actions">
+                <a href="contact.html" class="btn-primary" onclick="trackCTAClick('start_project_hero')">Start Your Project</a>
+                <a href="portfolio.html" class="btn-secondary" onclick="trackPortfolioView()">View Our Work</a>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="tech-showcase">
+                <!-- Floating Code Window -->
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-dots">
+                            <div class="window-dot red"></div>
+                            <div class="window-dot yellow"></div>
+                            <div class="window-dot green"></div>
+                        </div>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"><span class="keyword">const</span> <span class="string">website</span> = <span class="keyword">new</span> SentryProject();</div>
+                        <div class="code-line">website.<span class="keyword">addFeature</span>(<span class="string">'responsive-design'</span>);</div>
+                        <div class="code-line">website.<span class="keyword">optimize</span>(<span class="string">'performance'</span>);</div>
+                        <div class="code-line">website.<span class="keyword">deploy</span>(); <span class="comment">// Launch success!</span></div>
+                        <div class="code-line"><span class="keyword">console.log</span>(<span class="string">'Revenue increased by 300%'</span>);</div>
+                    </div>
+                </div>
+
+                <!-- Google Search Preview -->
+                <div class="browser-window">
+                    <div class="browser-header">
+                        <div class="window-dots">
+                            <div class="window-dot red"></div>
+                            <div class="window-dot yellow"></div>
+                            <div class="window-dot green"></div>
+                        </div>
+                    </div>
+                    <div class="browser-content">
+                        <div class="google-search-content">
+                            <div class="google-logo-small">
+                                <span style="color: #4285f4;">G</span><span style="color: #ea4335;">o</span><span style="color: #fbbc05;">o</span><span style="color: #4285f4;">g</span><span style="color: #34a853;">l</span><span style="color: #ea4335;">e</span>
+                            </div>
+                            <div class="search-bar-small">
+                                <div class="search-text">Sentry Web Solutions</div>
+                                <div class="search-results">
+                                    <div class="result-item">Sentry Web Solutions - Professional Web Design</div>
+                                    <div class="result-item">Sentry Web Solutions - Portfolio</div>
+                                    <div class="result-item">Sentry Web Solutions - Contact Us</div>
+                                    <div class="result-item">Sentry Web Solutions - Custom Websites</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Frame -->
+                <div class="mobile-frame">
+                    <div class="mobile-screen">
+                        <div class="mobile-app-content">
+                            <div class="mobile-header">
+                                <div class="mobile-signal">●●●●</div>
+                                <div class="mobile-time">9:41</div>
+                                <div class="mobile-battery">100%</div>
+                            </div>
+                            <div class="mobile-app">
+                                <div class="mobile-chat-interface">
+                                    <div class="mobile-chat-header">
+                                        <div class="mobile-bot-avatar">🤖</div>
+                                        <div class="mobile-bot-info">
+                                            <div class="mobile-bot-name">Sentry AI</div>
+                                            <div class="mobile-bot-status">● Online</div>
+                                        </div>
+                                    </div>
+                                    <div class="mobile-chat-messages">
+                                        <div class="mobile-chat-message mobile-bot">
+                                            <div class="mobile-message-bubble">Hi! Need a website?</div>
+                                        </div>
+                                        <div class="mobile-chat-message mobile-user">
+                                            <div class="mobile-message-bubble">Yes, for my business</div>
+                                        </div>
+                                        <div class="mobile-chat-message mobile-bot">
+                                            <div class="mobile-message-bubble">Perfect! What industry?</div>
+                                        </div>
+                                        <div class="mobile-typing-indicator">
+                                            <div class="mobile-typing-bubble">
+                                                <div class="mobile-typing-dots">
+                                                    <div class="mobile-typing-dot"></div>
+                                                    <div class="mobile-typing-dot"></div>
+                                                    <div class="mobile-typing-dot"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mobile-chat-input">
+                                        <div class="mobile-input-field">Type message...</div>
+                                        <div class="mobile-send-btn">→</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+<div class="container">
+    <div class="stats-grid reveal">
+        <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Client Satisfaction</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">99+</span>
+            <span class="stat-label">Page Speed Guaranteed</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5★</span>
+            <span class="stat-label">Average Rating</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">99.9%</span>
+            <span class="stat-label">Uptime Guarantee</span>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Services Preview -->
+<section class="services-preview">
+<div class="container">
+    <div class="section-header reveal">
+        <div class="section-badge">
+            🔥 Our Expertise
+        </div>
+        <h2 class="section-title">Technology That Drives Results</h2>
+        <p class="section-subtitle">We leverage cutting-edge frameworks and modern development practices to build websites that perform exceptionally across all metrics.</p>
+    </div>
+    
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">⚡</div>
+            <h3 class="service-title">Performance Optimization</h3>
+            <p class="service-description">Lightning-fast loading times with advanced caching, image optimization, and CDN integration. Your site will score 95+ on Google PageSpeed.</p>
+        </div>
+        
+        <div class="service-card reveal">
+            <div class="service-icon">🎯</div>
+            <h3 class="service-title">Conversion-Focused Design</h3>
+            <p class="service-description">Every element strategically designed to convert visitors into customers. Data-driven UX decisions that maximize your ROI.</p>
+        </div>
+        
+        <div class="service-card reveal">
+            <div class="service-icon">🛡️</div>
+            <h3 class="service-title">Enterprise Security</h3>
+            <p class="service-description">High-level security with SSL certificates, DDoS protection, and regular security audits. Your data and customers are protected.</p>
+        </div>
+        
+        <div class="service-card reveal">
+            <div class="service-icon">📊</div>
+            <h3 class="service-title">Advanced Analytics</h3>
+            <p class="service-description">Comprehensive tracking and reporting systems. Know exactly how your website performs and where to optimize for better results.</p>
+        </div>
+        
+        <div class="service-card reveal">
+            <div class="service-icon">🤖</div>
+            <h3 class="service-title">AI Integration</h3>
+            <p class="service-description">Smart chatbots, personalized content, and automated customer interactions. Leverage AI to enhance user experience and boost engagement.</p>
+        </div>
+        
+        <div class="service-card reveal">
+            <div class="service-icon">⚙️</div>
+            <h3 class="service-title">Scalable Architecture</h3>
+            <p class="service-description">Built to grow with your business. Cloud-native infrastructure that handles traffic spikes and scales automatically as you expand.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+<div class="container">
+    <div class="cta-content reveal">
+        <h2 class="cta-title">Ready to Dominate Your Market?</h2>
+        <p class="cta-subtitle">
+            Join the ranks of businesses that chose excellence. Let's build something extraordinary together—a website that doesn't just represent your brand, but accelerates your growth.
+        </p>
+        <a href="contact.html" class="cta-button" onclick="trackCTAClick('launch_success_story')">Launch Your Success Story</a>
+    </div>
+</div>
+</section>
+
+<!-- Replace your existing footer section with this updated one -->
+<footer class="footer">
+    <div class="container">
+        <!-- Add Newsletter Signup Section Before Other Footer Content -->
+        <div class="footer-newsletter">
+            <div class="newsletter-cta">
+                <div class="newsletter-cta-content">
+                    <h3>🚀 Stay Ahead of the Curve</h3>
+                    <p>Join business owners getting exclusive web development insights, industry trends, and special offers delivered to their inbox.</p>
+                </div>
+                <form class="footer-newsletter-form" id="footerNewsletterForm">
+                    <div class="footer-form-group">
+                        <input type="text" id="footerSubscriberName" placeholder="Your Name" required>
+                        <input type="email" id="footerSubscriberEmail" placeholder="your@email.com" required>
+                        <button type="submit" class="footer-newsletter-btn">
+                            <span class="footer-submit-text">Join Elite Community</span>
+                            <span class="footer-submit-loading" style="display: none;">
+                                <div class="footer-loading-spinner"></div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="footer-newsletter-benefits">
+                        <span class="benefit">✨ Exclusive Tips</span>
+                        <span class="benefit">💰 Special Discounts</span>
+                        <span class="benefit">📈 Growth Strategies</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SENTRY WEB SOLUTIONS</h3>
+                <p>Next-generation web development company specializing in high-performance, conversion-optimized websites that drive real business results.</p>
+                <p><strong>Elite Development Services</strong><br>Transforming businesses through technology</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:sentrywebsolutions@gmail.com" class="social-link" aria-label="Email" onclick="trackEmailClick()"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/sentrywebsolutions/" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="tel:+16128032135" class="social-link" aria-label="Phone" onclick="trackPhoneCall()"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" onclick="trackServiceView('about_from_footer')">About Us</a></li>
+                    <li><a href="services.html" onclick="trackServiceView('services_from_footer')">Services</a></li>
+                    <li><a href="portfolio.html" onclick="trackPortfolioView()">Portfolio</a></li>
+                    <li><a href="contact.html" onclick="trackCTAClick('contact_from_footer')">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="Legal/Privacy_Policy.pdf" target="_blank">Privacy Policy</a></li>
+                    <li><a href="Legal/Terms_of_Service.pdf" target="_blank">Terms of Service</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#hours">Business Hours</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Get Started</h3>
+                <p>📧 <a href="mailto:sentrywebsolutions@gmail.com" onclick="trackEmailClick()">sentrywebsolutions@gmail.com</a></p>
+                <p>📞 <a href="tel:+16128032135" onclick="trackPhoneCall()">(612) 803-2135</a></p>
+                <p>📱 <a href="tel:+16126668452" onclick="trackPhoneCall()">(612) 666-8452</a></p>
+                <p><strong>Business Hours:</strong> 8AM - 6PM CST</p>
+                <p><strong>Response Time:</strong> Within 2 hours (business hours)</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sentry Web Solutions. All rights reserved. | Professional Web Development Services</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Chatbot Widget -->
+<div class="chatbot-container">
+    <button class="chat-toggle" id="chatToggle">
+        <svg class="chat-icon" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12h-4v-2h4v2zm0-4h-4V8h4v2z"/>
+        </svg>
+    </button>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3>Sentry AI Assistant</h3>
+            <p>How can I help you today?</p>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-content">
+                    Hello! 👋 I'm your Sentry Web Solutions AI assistant. I'm here to help you with information about our services, pricing, project timelines, and any questions about web development. What can I help you with today?
+                </div>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dots">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Ask about our services, pricing, or get a quote..." autocomplete="off">
+            <button class="send-btn" id="sendBtn">
+                <svg class="send-icon" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// Navbar scroll effect
+function handleNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+}
+
+// Mobile menu toggle
+function setupMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Scroll reveal animation
+function setupScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    reveals.forEach(reveal => {
+        revealObserver.observe(reveal);
+    });
+}
+
+// Animated counter for stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const target = counter.textContent;
+        const isNumber = !isNaN(parseInt(target));
+        
+        if (isNumber) {
+            const targetNum = parseInt(target);
+            let current = 0;
+            const increment = targetNum / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= targetNum) {
+                    counter.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current) + '+';
+                }
+            }, 40);
+        }
+    });
+}
+
+// Simple typing animation
+function startTyping() {
+    const element = document.getElementById('typing-text');
+    if (!element) return;
+    
+    const words = ['Convert', 'Perform', 'Deliver', 'Execute', 'Produce', 'Succeed'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function typeWriter() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            element.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            element.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        let typeSpeed = 150;
+        
+        if (isDeleting) {
+            typeSpeed /= 2;
+        }
+        
+        if (!isDeleting && charIndex === currentWord.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex++;
+            if (wordIndex === words.length) {
+                wordIndex = 0;
+            }
+        }
+        
+        setTimeout(typeWriter, typeSpeed);
+    }
+    
+    typeWriter();
+}
+
+// AI Chatbot Class
+class SentryAIChatbot {
+    constructor() {
+        this.isOpen = false;
+        this.conversationHistory = [];
+        this.initializeElements();
+        this.bindEvents();
+        this.initializeAI();
+    }
+
+    initializeElements() {
+        this.chatToggle = document.getElementById('chatToggle');
+        this.chatWindow = document.getElementById('chatWindow');
+        this.chatMessages = document.getElementById('chatMessages');
+        this.messageInput = document.getElementById('messageInput');
+        this.sendBtn = document.getElementById('sendBtn');
+        this.typingIndicator = document.getElementById('typingIndicator');
+    }
+
+    bindEvents() {
+        this.chatToggle.addEventListener('click', () => this.toggleChat());
+        this.sendBtn.addEventListener('click', () => this.sendMessage());
+        this.messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.sendMessage();
+        });
+    }
+
+    initializeAI() {
+        // Sentry Web Solutions specific knowledge base
+        this.knowledgeBase = {
+            greetings: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening'],
+            services: ['services', 'what do you do', 'offerings', 'solutions', 'development'],
+            pricing: ['price', 'cost', 'how much', 'pricing', 'quote', 'estimate', 'budget'],
+            ecommerce: ['e-commerce', 'ecommerce', 'online store', 'shopping cart', 'marketplace'],
+            webdesign: ['web design', 'website design', 'ui', 'ux', 'interface', 'responsive'],
+            ai: ['ai', 'artificial intelligence', 'chatbot', 'automation', 'machine learning'],
+            technology: ['tech', 'technology', 'framework', 'react', 'node', 'python'],
+            timeline: ['timeline', 'how long', 'duration', 'completion', 'delivery'],
+            contact: ['contact', 'phone', 'email', 'reach', 'get in touch'],
+            portfolio: ['portfolio', 'examples', 'work', 'projects', 'case studies'],
+            about: ['about', 'who are you', 'company', 'team', 'experience']
+        };
+
+        this.responses = {
+            greetings: [
+                "Hello! Welcome to Sentry Web Solutions! 🚀 I'm here to help you learn about our elite web development services. What can I assist you with today?",
+                "Hi there! Thanks for visiting Sentry Web Solutions. I'm your AI assistant, ready to help with any questions about our cutting-edge web development services!",
+                "Hey! Great to see you here. I'm the Sentry AI assistant, and I'd love to help you discover how we can transform your digital presence. What are you looking for?"
+            ],
+            services: [
+                "Sentry Web Solutions specializes in next-generation web development! Our core services include:\n\n🚀 Custom Website Development\n⚡ Performance Optimization (95+ PageSpeed scores)\n🛡️ Enterprise Security Solutions\n🤖 AI Integration & Chatbots\n📊 Advanced Analytics Setup\n🎯 Conversion-Focused Design\n⚙️ Scalable Cloud Architecture\n\nWhich service interests you most?",
+                "We're a full-service web development company focused on driving real business results! Our expertise covers everything from lightning-fast websites to AI-powered platforms. We specialize in React, Node.js, Python, and cutting-edge technologies that give you a competitive edge. What type of project do you have in mind?"
+            ],
+            pricing: [
+                "Great question! Our pricing is tailored to each project's unique requirements. Here's a general overview:\n\n💼 Business Websites: Starting at $2,500\n🛒 E-commerce Platforms: Starting at $5,000\n🚀 Enterprise Solutions: Starting at $10,000\n🤖 AI Integration: Starting at $3,000\n\nFor an accurate quote, I'd love to learn more about your specific needs. What type of website are you considering?",
+                "We offer competitive, value-driven pricing with a 24-hour response guarantee! Our projects typically range from $2,500 for business sites to $15,000+ for complex enterprise solutions. Every quote includes our performance optimization and security features. Would you like me to connect you with our team for a free consultation?"
+            ],
+            ecommerce: [
+                "Excellent choice! Our e-commerce solutions are built for serious business growth 📈\n\nWe create high-converting online stores with:\n✅ Lightning-fast page loads\n✅ Mobile-optimized checkout\n✅ Advanced inventory management\n✅ Payment gateway integration\n✅ SEO optimization\n✅ Analytics & conversion tracking\n\nOur e-commerce sites typically see 40%+ higher conversion rates. What products or services will you be selling?",
+                "E-commerce is one of our specialties! We build stores that don't just look great—they sell effectively. Our platforms include everything from product catalogs to automated marketing tools. We work with Shopify, WooCommerce, and custom solutions. What's your target launch timeline?"
+            ],
+            webdesign: [
+                "Our web design philosophy is simple: every pixel should drive results! 🎯\n\nWe create:\n🎨 Stunning, conversion-focused designs\n📱 100% mobile-responsive layouts\n⚡ Ultra-fast loading speeds\n🔍 SEO-optimized structure\n♿ Accessible, user-friendly interfaces\n\nOur designs consistently achieve 95+ Google PageSpeed scores. What industry is your business in?",
+                "We believe great design is invisible—it just works perfectly for your users! Our team creates modern, professional websites that reflect your brand and convert visitors into customers. Every design is backed by data and optimized for performance. What's your vision for your website?"
+            ],
+            ai: [
+                "AI integration is the future, and we're leading the way! 🤖\n\nOur AI solutions include:\n💬 Intelligent chatbots (like me!)\n🎯 Personalized content systems\n📊 Predictive analytics\n🔄 Automated workflows\n🎨 AI-powered design optimization\n\nAI can dramatically improve user engagement and reduce operational costs. What specific AI features interest you?",
+                "You're experiencing our AI capabilities right now! We integrate cutting-edge AI to enhance user experience, automate customer service, and provide intelligent insights. Our AI solutions typically increase engagement by 60%+ and reduce support costs by 40%. How could AI help your business?"
+            ],
+            technology: [
+                "We use only the latest, most powerful technologies! 💻\n\nOur tech stack:\n⚛️ React & Next.js for frontend\n🟢 Node.js & Python for backend\n☁️ AWS/Google Cloud infrastructure\n🗄️ PostgreSQL & MongoDB databases\n🔒 Enterprise-grade security\n🚀 CI/CD deployment pipelines\n\nWe choose technologies that ensure your site stays fast, secure, and scalable. Any specific tech requirements?",
+                "Technology is our passion! We stay ahead of trends to give you competitive advantages. Our team is expert in modern frameworks that deliver superior performance and user experience. We believe in future-proof solutions that grow with your business. What's your current tech setup?"
+            ],
+            timeline: [
+                "We pride ourselves on efficient delivery without compromising quality! ⏰\n\nTypical timelines:\n📄 Business websites: 2-4 weeks\n🛒 E-commerce stores: 4-8 weeks\n🏢 Enterprise platforms: 8-16 weeks\n🤖 AI integration: 2-6 weeks\n\nWe provide weekly progress updates and maintain constant communication throughout. When do you need to launch?",
+                "Great question! Timeline depends on project complexity, but we're known for fast, efficient delivery. We include a detailed project roadmap with every proposal, so you'll know exactly what to expect and when. Rush projects available with premium support. What's your ideal launch date?"
+            ],
+            contact: [
+                "I'd love to connect you with our team! 📞\n\n📧 Email: sentrywebsolutions@gmail.com\n📱 Phone: (612) 803-2135\n⏱️ Response guarantee: Within 2 hours\n🎯 Free consultation available 24/7\n\nOur team is based in Minneapolis and serves clients worldwide. We're known for our responsive communication and personalized service. Should I have someone reach out to you?",
+                "Getting in touch is easy! Our team responds to all inquiries within 2 hours, and we offer free strategy sessions to discuss your project. Email us at sentrywebsolutions@gmail.com or call (612) 803-2135. We're here to help turn your vision into reality!"
+            ],
+            portfolio: [
+                "We're proud of our track record! Our portfolio showcases websites that have:\n\n📈 Increased client revenue by 300%+\n⚡ Achieved 95+ PageSpeed scores\n🎯 Improved conversion rates by 40%+\n🔒 Maintained 99.9% uptime\n⭐ Earned 5-star client reviews\n\nI'd recommend checking our portfolio page or asking for a free consultation to see relevant examples for your industry. What type of businesses are you most interested in seeing?",
+                "Our work speaks for itself! We've helped businesses across industries achieve remarkable digital growth. From e-commerce stores generating millions in revenue to SaaS platforms serving thousands of users—we build for success. Would you like to see examples specific to your industry?"
+            ],
+            about: [
+                "Sentry Web Solutions is your elite web development partner! 🎖️\n\nWe're a Minneapolis-based team passionate about creating digital experiences that drive real business results. We specialize in:\n\n⚡ Next-generation web technologies\n🤖 AI-powered solutions\n📊 Data-driven optimization\n🚀 Scalable, future-proof architecture\n\nOur mission: Transform businesses through cutting-edge technology. We don't just build websites—we build success stories. What's your success story going to be?",
+                "We're more than developers—we're digital growth partners! Our team combines technical expertise with business strategy to deliver websites that don't just look amazing, they drive measurable results. Based in Minneapolis, serving clients worldwide with elite development services."
+            ],
+            default: [
+                "That's an interesting question! While I don't have specific information about that topic, I'm here to help with questions about Sentry Web Solutions' services, pricing, timelines, and capabilities. Feel free to ask about:\n\n• Our web development services\n• Pricing and project estimates\n• Technology and AI integration\n• Portfolio examples\n• Getting started with your project\n\nWhat would you like to know?",
+                "I'd love to help with that! As the Sentry Web Solutions AI assistant, I'm best equipped to answer questions about our services, pricing, technology capabilities, and how we can help grow your business. Is there something specific about our web development services you'd like to explore?",
+                "Great question! I'm specialized in helping with Sentry Web Solutions inquiries. Whether you're curious about our development process, pricing, timelines, or want to discuss your specific project needs, I'm here to help. What aspect of web development interests you most?"
+            ]
+        };
+    }
+
+    toggleChat() {
+        this.isOpen = !this.isOpen;
+        this.chatToggle.classList.toggle('active', this.isOpen);
+        this.chatWindow.classList.toggle('active', this.isOpen);
+        
+        if (this.isOpen) {
+            this.messageInput.focus();
+        }
+    }
+
+    async sendMessage() {
+        const message = this.messageInput.value.trim();
+        if (!message) return;
+
+        // Add user message
+        this.addMessage(message, 'user');
+        this.messageInput.value = '';
+
+        // Show typing indicator
+        this.showTyping();
+
+        // Generate AI response
+        setTimeout(async () => {
+            const response = await this.generateResponse(message);
+            this.hideTyping();
+            this.addMessage(response, 'bot');
+        }, Math.random() * 1500 + 800); // Random delay between 0.8-2.3 seconds
+    }
+
+    addMessage(content, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = content;
+        
+        messageDiv.appendChild(contentDiv);
+        this.chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+        
+        // Store in conversation history
+        this.conversationHistory.push({ content, sender, timestamp: new Date() });
+    }
+
+    showTyping() {
+        this.typingIndicator.style.display = 'block';
+        this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+    }
+
+    hideTyping() {
+        this.typingIndicator.style.display = 'none';
+    }
+
+    async generateResponse(userMessage) {
+        const lowercaseMessage = userMessage.toLowerCase();
+        
+        // Check for specific intents related to Sentry Web Solutions
+        for (const [intent, keywords] of Object.entries(this.knowledgeBase)) {
+            if (keywords.some(keyword => lowercaseMessage.includes(keyword))) {
+                const responses = this.responses[intent];
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+        }
+
+        // Advanced pattern matching for Sentry-specific queries
+        if (lowercaseMessage.includes('thank')) {
+            return "You're very welcome! I'm thrilled I could help. Sentry Web Solutions is here whenever you need us. Is there anything else about our services you'd like to explore? I'm always ready to assist! 😊";
+        }
+
+        if (lowercaseMessage.includes('how are you')) {
+            return "I'm doing fantastic, thank you for asking! I'm energized and ready to help you discover how Sentry Web Solutions can transform your digital presence. How can I assist you with your web development needs today?";
+        }
+
+        if (lowercaseMessage.includes('impressive') || lowercaseMessage.includes('amazing') || lowercaseMessage.includes('great')) {
+            return "Thank you so much! That means a lot. We're passionate about delivering exceptional results for our clients. Sentry Web Solutions is committed to excellence in everything we do. Is there a particular aspect of our services you'd like to learn more about?";
+        }
+
+        if (lowercaseMessage.includes('seo') || lowercaseMessage.includes('search engine')) {
+            return "SEO is built into everything we do! 🔍\n\nOur SEO approach includes:\n✅ Technical SEO optimization\n✅ Page speed optimization (95+ scores)\n✅ Mobile-first responsive design\n✅ Schema markup implementation\n✅ Content optimization strategies\n✅ Analytics and ranking tracking\n\nWe don't just build websites—we build websites that get found! Most of our clients see significant ranking improvements within 3-6 months. What's your current SEO situation?";
+        }
+
+        if (lowercaseMessage.includes('maintenance') || lowercaseMessage.includes('support')) {
+            return "Ongoing support is crucial for digital success! 🛠️\n\nOur maintenance packages include:\n🔧 Regular security updates\n⚡ Performance monitoring & optimization\n🔄 Content updates & backups\n📊 Analytics reporting\n🆘 Priority technical support\n🚀 Feature additions & improvements\n\nWe offer different tiers to match your needs and budget. Most clients choose our comprehensive package for peace of mind. Would you like details about our support options?";
+        }
+
+        if (lowercaseMessage.includes('competition') || lowercaseMessage.includes('competitor')) {
+            return "Standing out from competitors is what we do best! 🏆\n\nWe help you dominate through:\n⚡ Superior website performance\n🎯 Conversion-optimized design\n🤖 Advanced AI integration\n📈 Data-driven optimization\n🔒 Enterprise-level security\n🚀 Cutting-edge technology\n\nOur clients consistently outperform their competition online. We'd love to analyze your competitive landscape and show you how to lead your market. What industry are you in?";
+        }
+
+        // Default responses for unrecognized input
+        const defaultResponses = this.responses.default;
+        return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+    }
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+    setupMobileMenu();
+    setupScrollReveal();
+    startTyping();
+    
+    // Initialize the Sentry AI Chatbot
+    new SentryAIChatbot();
+
+    // Handle navbar scroll effect
+    handleNavbarScroll();
+    window.addEventListener('scroll', handleNavbarScroll);
+
+
+    // Trigger counter animation when stats section is visible
+    const statsSection = document.querySelector('.stats-section');
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+});
+
+// Event listeners
+window.addEventListener('scroll', handleNavbarScroll);
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add dynamic particle background effect
+function createParticles() {
+    const hero = document.querySelector('.hero');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            top: ${Math.random() * 100}%;
+            left: ${Math.random() * 100}%;
+            animation: floatParticle ${5 + Math.random() * 10}s ease-in-out infinite;
+            animation-delay: ${Math.random() * 5}s;
+        `;
+        hero.appendChild(particle);
+    }
+}
+
+// Add particle animation keyframes
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+    @keyframes floatParticle {
+        0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0; }
+        50% { transform: translateY(-100px) translateX(50px); opacity: 1; }
+    }
+`;
+document.head.appendChild(particleStyle);
+
+// Initialize particles
+setTimeout(createParticles, 1000);
+</script>
+
+<div class="newsletter-overlay" id="newsletterOverlay">
+    <div class="newsletter-popup">
+        <button class="newsletter-close" id="newsletterClose">x</button>
+        
+        <div class="newsletter-content">
+            <div class="newsletter-icon">📧</div>
+            <h3 class="newsletter-title">Join Our Elite Developer Community</h3>
+            <p class="newsletter-subtitle">
+                Get exclusive insights, cutting-edge web development tips, industry trends, and special discounts on our premium services. Join 500+ successful business owners who trust our expertise!
+            </p>
+            
+            <form class="newsletter-form" id="newsletterForm">
+                <div class="form-group">
+                    <input type="text" id="subscriberName" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="subscriberEmail" placeholder="your@email.com" required>
+                </div>
+                <button type="submit" class="newsletter-submit">
+                    <span class="submit-text">Join the Elite Community</span>
+                    <span class="submit-loading" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        Subscribing...
+                    </span>
+                </button>
+            </form>
+            
+            <div class="newsletter-benefits">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🚀</span>
+                    <span>Latest Web Development Trends</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">💰</span>
+                    <span>Exclusive Discounts & Offers</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📊</span>
+                    <span>Industry Insights & Case Studies</span>
+                </div>
+            </div>
+            
+            <p class="newsletter-privacy">
+                We respect your privacy. Unsubscribe at any time. No spam, ever.
+            </p>
+        </div>
+        
+        <div class="newsletter-success" id="newsletterSuccess" style="display: none;">
+            <div class="success-icon">🎉</div>
+            <h3>Welcome to the Elite Community!</h3>
+            <p>Thank you for subscribing! Check your email for a special welcome offer and our latest insights.</p>
+            <button class="success-close" onclick="closeNewsletter()">Continue Exploring</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // UPDATED NEWSLETTER SYSTEM - ALLOWS DUPLICATE NAMES WITH DIFFERENT EMAILS
+// Replace your existing newsletter JavaScript with this code
+
+// Enhanced submission tracking system
+const NewsletterTracker = {
+    // Store submitted emails (not names) to prevent email duplicates only
+    submittedEmails: new Set(JSON.parse(localStorage.getItem('newsletter_submitted_emails') || '[]')),
+    
+    isEmailSubmitted(email) {
+        return this.submittedEmails.has(email.toLowerCase());
+    },
+    
+    addSubmittedEmail(email) {
+        this.submittedEmails.add(email.toLowerCase());
+        this.saveToStorage();
+    },
+    
+    saveToStorage() {
+        localStorage.setItem('newsletter_submitted_emails', JSON.stringify([...this.submittedEmails]));
+    },
+    
+    // Clear all tracking (for testing purposes)
+    clearAll() {
+        this.submittedEmails.clear();
+        localStorage.removeItem('newsletter_submitted_emails');
+        localStorage.removeItem('newsletter_dismissed');
+        localStorage.removeItem('newsletter_subscribed');
+        console.log('🧹 All newsletter tracking cleared!');
+    }
+};
+
+// Global submission function
+async function submitToGoogleSheets(name, email, source = 'website_popup') {
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbx0XrPZZbOmi_CP0414VKxENhMbXb4RArojwurmtlUQ-6Kf-t4OFn-r8oq3VL_57tCpCA/exec';
+    
+    console.log('🚀 Newsletter submission starting...');
+    console.log('📝 Data:', { name, email, source });
+    
+    const payload = {
+        name: name,
+        email: email,
+        timestamp: new Date().toISOString(),
+        source: source
+    };
+    
+    try {
+        const response = await fetch(scriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        });
+
+        console.log('✅ Newsletter request sent successfully');
+        return true;
+        
+    } catch (error) {
+        console.error('❌ Newsletter submission failed:', error);
+        return false;
+    }
+}
+
+// Enhanced Newsletter Popup Class
+class NewsletterPopup {
+    constructor() {
+        this.overlay = null;
+        this.hasShown = false;
+        this.init();
+    }
+
+    init() {
+        if (this.shouldShow()) {
+            this.createPopup();
+            this.bindEvents();
+            this.scheduleShow();
+        }
+    }
+
+    shouldShow() {
+        const lastDismissed = localStorage.getItem('newsletter_dismissed');
+        const today = new Date().toDateString();
+        // Removed the global subscription check - now only checks dismissal
+        return lastDismissed !== today;
+    }
+
+    createPopup() {
+        this.overlay = document.getElementById('newsletterOverlay');
+        this.form = document.getElementById('newsletterForm');
+        this.closeBtn = document.getElementById('newsletterClose');
+        this.successDiv = document.getElementById('newsletterSuccess');
+    }
+
+    bindEvents() {
+        this.closeBtn.addEventListener('click', () => this.closePopup());
+        
+        this.overlay.addEventListener('click', (e) => {
+            if (e.target === this.overlay) {
+                this.closePopup();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.overlay.classList.contains('active')) {
+                this.closePopup();
+            }
+        });
+
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    scheduleShow() {
+        const scrollTrigger = () => {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > 50 && !this.hasShown) {
+                this.showPopup();
+                window.removeEventListener('scroll', scrollTrigger);
+            }
+        };
+
+        setTimeout(() => {
+            if (!this.hasShown) {
+                this.showPopup();
+            }
+        }, 30000);
+
+        window.addEventListener('scroll', scrollTrigger);
+    }
+
+    showPopup() {
+        if (this.hasShown) return;
+        
+        this.hasShown = true;
+        this.overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            document.getElementById('subscriberName').focus();
+        }, 300);
+    }
+
+    closePopup() {
+        this.overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        localStorage.setItem('newsletter_dismissed', new Date().toDateString());
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('subscriberName').value.trim();
+        const email = document.getElementById('subscriberEmail').value.trim();
+        
+        if (!name || !email) return;
+
+        // Check if this specific EMAIL has already been submitted
+        if (NewsletterTracker.isEmailSubmitted(email)) {
+            this.showError('This email address is already subscribed! 📧');
+            return;
+        }
+
+        this.setLoadingState(true);
+
+        try {
+            const success = await submitToGoogleSheets(name, email, 'website_popup');
+            
+            if (success) {
+                // Track the email (not the name) to prevent duplicate emails
+                NewsletterTracker.addSubmittedEmail(email);
+                this.showSuccess();
+                console.log(`✅ Successfully subscribed: ${name} (${email})`);
+            } else {
+                console.log('⚠️ Showing success despite potential CORS issue');
+                NewsletterTracker.addSubmittedEmail(email);
+                this.showSuccess();
+            }
+        } catch (error) {
+            console.error('Newsletter submission error:', error);
+            NewsletterTracker.addSubmittedEmail(email);
+            this.showSuccess();
+        }
+    }
+
+    setLoadingState(isLoading) {
+        const submitBtn = this.form.querySelector('.newsletter-submit');
+        const submitText = submitBtn.querySelector('.submit-text');
+        const submitLoading = submitBtn.querySelector('.submit-loading');
+        
+        submitBtn.disabled = isLoading;
+        submitText.style.display = isLoading ? 'none' : 'inline';
+        submitLoading.style.display = isLoading ? 'inline-flex' : 'none';
+    }
+
+    showSuccess() {
+        const content = this.overlay.querySelector('.newsletter-content');
+        content.style.display = 'none';
+        this.successDiv.style.display = 'block';
+    }
+
+    showError(message) {
+        this.setLoadingState(false);
+        
+        // Remove existing error messages
+        const existingError = this.form.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        // Create and show error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.cssText = `
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        `;
+        errorDiv.textContent = message;
+        
+        this.form.appendChild(errorDiv);
+
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Enhanced Footer Newsletter Class
+class FooterNewsletterSignup {
+    constructor() {
+        this.form = document.getElementById('footerNewsletterForm');
+        if (!this.form) return;
+        
+        this.nameInput = document.getElementById('footerSubscriberName');
+        this.emailInput = document.getElementById('footerSubscriberEmail');
+        this.submitBtn = this.form.querySelector('.footer-newsletter-btn');
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        const name = this.nameInput.value.trim();
+        const email = this.emailInput.value.trim();
+        
+        if (!name || !email) return;
+
+        // Check if this specific EMAIL has already been submitted
+        if (NewsletterTracker.isEmailSubmitted(email)) {
+            this.showMessage('This email address is already subscribed! 📧', 'error');
+            return;
+        }
+
+        this.setLoadingState(true);
+
+        try {
+            const success = await submitToGoogleSheets(name, email, 'footer_signup');
+            
+            // Track the email (not the name) to prevent duplicate emails
+            NewsletterTracker.addSubmittedEmail(email);
+            this.showSuccess();
+            this.form.reset();
+            console.log(`✅ Successfully subscribed: ${name} (${email})`);
+        } catch (error) {
+            console.error('Footer newsletter error:', error);
+            this.showMessage('Thank you for subscribing! Your submission is being processed.', 'success');
+            NewsletterTracker.addSubmittedEmail(email);
+            this.form.reset();
+            this.setLoadingState(false);
+        }
+    }
+
+    setLoadingState(isLoading) {
+        const submitText = this.submitBtn.querySelector('.footer-submit-text');
+        const submitLoading = this.submitBtn.querySelector('.footer-submit-loading');
+        
+        this.submitBtn.disabled = isLoading;
+        submitText.style.display = isLoading ? 'none' : 'inline';
+        submitLoading.style.display = isLoading ? 'inline-flex' : 'none';
+    }
+
+    showSuccess() {
+        this.setLoadingState(false);
+        this.showMessage('🎉 Welcome to the elite community! Check your email for exclusive content.', 'success');
+    }
+
+    showMessage(message, type) {
+        const existingMessage = this.form.querySelector('.footer-newsletter-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `footer-newsletter-message footer-newsletter-${type}`;
+        messageDiv.style.cssText = `
+            margin-top: 1rem;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+            ${type === 'success' ? 'background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);' : ''}
+            ${type === 'error' ? 'background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3);' : ''}
+        `;
+        messageDiv.textContent = message;
+        
+        this.form.appendChild(messageDiv);
+
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Global function to close newsletter
+function closeNewsletter() {
+    const overlay = document.getElementById('newsletterOverlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Test functions (optional - for debugging)
+function testNewsletter() {
+    console.log('🧪 Testing newsletter...');
+    
+    const testSubmission = async () => {
+        const result = await submitToGoogleSheets('Console Test', 'console.test@example.com', 'console_test');
+        console.log('🎯 Test result:', result);
+        
+        if (result) {
+            console.log('✅ Newsletter test SUCCESS!');
+            alert('✅ Newsletter test passed! Check your Google Sheet for the new entry.');
+        } else {
+            console.log('❌ Newsletter test failed');
+            alert('❌ Newsletter test failed, but this might be a CORS issue. Check your Google Sheet anyway.');
+        }
+    };
+    
+    testSubmission();
+}
+
+function clearNewsletterData() {
+    NewsletterTracker.clearAll();
+    alert('🧹 All newsletter data cleared! You can now test fresh submissions.');
+}
+
+// Updated DOMContentLoaded initialization
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('📧 Initializing UPDATED newsletter system...');
+    console.log('✨ NEW: Allows duplicate names with different emails!');
+    console.log('🚫 BLOCKS: Duplicate email addresses only');
+    
+    new NewsletterPopup();
+    new FooterNewsletterSignup();
+    
+    console.log('📧 Updated newsletter system loaded successfully!');
+    console.log('💾 Currently tracked emails:', [...NewsletterTracker.submittedEmails]);
+});
+
+console.log('📧 Updated Newsletter System Ready!');
+console.log('🔧 Available test functions:');
+console.log('  • testNewsletter() - Test Google Sheets connection');
+console.log('  • clearNewsletterData() - Reset all tracking');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- REPLACE your existing Google Analytics code with this ENHANCED version -->
+<!-- Google tag (gtag.js) - ENHANCED FOR SEO -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W5BZY0BV0P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // ENHANCED configuration with SEO tracking
+  gtag('config', 'G-W5BZY0BV0P', {
+    // Enhanced SEO tracking for better insights
+    send_page_view: true,
+    page_title: document.title,
+    page_location: window.location.href,
+    
+    // Cookie settings for better tracking compliance
+    cookie_flags: 'secure;samesite=lax',
+    
+    // Enhanced tracking options
+    allow_google_signals: true,
+    allow_ad_personalization_signals: false
+  });
+
+  // ===== CONVERSION TRACKING FUNCTIONS =====
+  
+  // Track contact form submissions (high-value conversion)
+  function trackContactFormSubmission() {
+    gtag('event', 'form_submission', {
+      event_category: 'conversion',
+      event_label: 'contact_form',
+      value: 10 // Assign value to conversions
+    });
+    console.log('📊 Tracked: Contact form submission');
+  }
+
+  // Track newsletter signups (engagement metric)
+  function trackNewsletterSignup() {
+    gtag('event', 'newsletter_signup', {
+      event_category: 'conversion', 
+      event_label: 'newsletter',
+      value: 5 // Lower value than contact form
+    });
+    console.log('📊 Tracked: Newsletter signup');
+  }
+
+  // Track phone number clicks (local SEO signal)
+  function trackPhoneCall() {
+    gtag('event', 'phone_call', {
+      event_category: 'contact',
+      event_label: 'phone_click',
+      value: 8 // High value for direct contact
+    });
+    console.log('📊 Tracked: Phone call click');
+  }
+
+  // Track email clicks (engagement signal)
+  function trackEmailClick() {
+    gtag('event', 'email_click', {
+      event_category: 'contact',
+      event_label: 'email_click', 
+      value: 6
+    });
+    console.log('📊 Tracked: Email click');
+  }
+
+  // Track portfolio views (business goal)
+  function trackPortfolioView() {
+    gtag('event', 'portfolio_view', {
+      event_category: 'engagement',
+      event_label: 'portfolio_page',
+      value: 3
+    });
+    console.log('📊 Tracked: Portfolio view');
+  }
+
+  // Track service page views (business goal)
+  function trackServiceView(serviceName) {
+    gtag('event', 'service_view', {
+      event_category: 'engagement',
+      event_label: serviceName || 'services_page',
+      value: 4
+    });
+    console.log('📊 Tracked: Service view -', serviceName);
+  }
+
+  // Track CTA button clicks
+  function trackCTAClick(ctaLabel) {
+    gtag('event', 'cta_click', {
+      event_category: 'conversion',
+      event_label: ctaLabel,
+      value: 7
+    });
+    console.log('📊 Tracked: CTA click -', ctaLabel);
+  }
+
+  // Track chatbot interactions
+  function trackChatbotOpen() {
+    gtag('event', 'chatbot_open', {
+      event_category: 'engagement',
+      event_label: 'ai_assistant',
+      value: 2
+    });
+    console.log('📊 Tracked: Chatbot opened');
+  }
+
+  // ===== AUTOMATIC SEO TRACKING =====
+
+  // Track scroll depth (engagement metric for SEO)
+  let scrollTracked25 = false, scrollTracked50 = false, scrollTracked75 = false;
+  
+  window.addEventListener('scroll', function() {
+    const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    
+    if (!scrollTracked25 && scrollPercent > 25) {
+      gtag('event', 'scroll_25', {
+        event_category: 'engagement',
+        event_label: 'scroll_depth',
+        value: 1
+      });
+      scrollTracked25 = true;
+      console.log('📊 Tracked: 25% scroll depth');
+    }
+    
+    if (!scrollTracked50 && scrollPercent > 50) {
+      gtag('event', 'scroll_50', {
+        event_category: 'engagement', 
+        event_label: 'scroll_depth',
+        value: 2
+      });
+      scrollTracked50 = true;
+      console.log('📊 Tracked: 50% scroll depth');
+    }
+    
+    if (!scrollTracked75 && scrollPercent > 75) {
+      gtag('event', 'scroll_75', {
+        event_category: 'engagement',
+        event_label: 'scroll_depth', 
+        value: 3
+      });
+      scrollTracked75 = true;
+      console.log('📊 Tracked: 75% scroll depth');
+    }
+  });
+
+  // Track page load performance (Core Web Vitals for SEO)
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      try {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        if (perfData) {
+          const loadTime = Math.round(perfData.loadEventEnd - perfData.loadEventStart);
+          
+          // Track page load time
+          gtag('event', 'page_timing', {
+            event_category: 'performance',
+            event_label: 'page_load_time',
+            value: loadTime
+          });
+          
+          // Track if page loads fast (good for SEO)
+          if (loadTime < 3000) {
+            gtag('event', 'fast_page_load', {
+              event_category: 'performance',
+              event_label: 'under_3_seconds',
+              value: 1
+            });
+          }
+          
+          console.log('📊 Tracked: Page load time -', loadTime + 'ms');
+        }
+      } catch (error) {
+        console.log('Performance tracking error:', error);
+      }
+    }, 1000);
+  });
+
+  // Track outbound links (external website clicks)
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && link.href) {
+      const url = new URL(link.href, window.location.href);
+      
+      // Check if it's an external link
+      if (url.hostname !== window.location.hostname) {
+        gtag('event', 'outbound_click', {
+          event_category: 'external',
+          event_label: url.hostname,
+          transport_type: 'beacon'
+        });
+        console.log('📊 Tracked: Outbound click to', url.hostname);
+      }
+    }
+  });
+
+  // Track time on page (for engagement metrics)
+  let timeOnPage = 0;
+  const timeTracker = setInterval(function() {
+    timeOnPage += 10;
+    
+    // Track engagement milestones
+    if (timeOnPage === 30) { // 30 seconds
+      gtag('event', 'time_on_page_30s', {
+        event_category: 'engagement',
+        event_label: 'time_engagement'
+      });
+    } else if (timeOnPage === 60) { // 1 minute
+      gtag('event', 'time_on_page_1m', {
+        event_category: 'engagement', 
+        event_label: 'time_engagement'
+      });
+    } else if (timeOnPage === 180) { // 3 minutes
+      gtag('event', 'time_on_page_3m', {
+        event_category: 'engagement',
+        event_label: 'time_engagement'
+      });
+    }
+  }, 10000); // Check every 10 seconds
+
+  // Stop tracking when user leaves
+  window.addEventListener('beforeunload', function() {
+    clearInterval(timeTracker);
+  });
+
+  // Track page visibility (for bounce rate accuracy)
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      gtag('event', 'page_hidden', {
+        event_category: 'engagement',
+        event_label: 'visibility_change'
+      });
+    } else {
+      gtag('event', 'page_visible', {
+        event_category: 'engagement',
+        event_label: 'visibility_change'
+      });
+    }
+  });
+
+  console.log('🚀 Enhanced Google Analytics loaded for Sentry Web Solutions');
+</script>
+    <meta charset="UTF-8">
+    <link rel="icon" href="Images/logo.jpg" type="image/jpg">
+    <link rel="apple-touch-icon" href="Images/logo.jpg">
+    <link rel="shortcut icon" href="Images/logo.jpg" type="image/jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>About Sentry Web Solutions | Professional Web Design Team</title>
+    <meta name="description" content="Learn about Sentry Web Solutions - a next-generation web development company creating exceptional digital experiences for businesses. Discover our story, mission, and commitment to excellence.">
+    <meta name="keywords" content="about sentry web solutions, professional web design team, custom website designers, our story, company mission">
+    <meta name="author" content="Sentry Web Solutions">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="About Sentry Web Solutions | Professional Web Design Team">
+    <meta property="og:description" content="Meet the elite web development team behind Sentry Web Solutions. Creating exceptional digital experiences that drive business growth.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sentrywebsolutions.com/about">
+    <meta property="og:image" content="https://sentrywebsolutions.com/images/about-og-image.jpg">
+    
+    <!-- FontAwesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #0a0b14;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 11, 20, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 11, 20, 0.98);
+            box-shadow: 0 4px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-image {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, #0a0b14 0%, #1e293b 50%, #3b82f6 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .breadcrumb {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #3b82f6;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+            color: #94a3b8;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Company Story Section */
+        .story-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0a0b14 0%, #1e293b 100%);
+            position: relative;
+        }
+
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .story-text h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .story-text p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-highlights {
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateX(5px);
+        }
+
+        .highlight-icon {
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-item span {
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .story-visual {
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .story-visual::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+        }
+
+        .story-image {
+            max-width: 100%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 120px 0;
+            background: rgba(10, 11, 20, 0.95);
+            position: relative;
+        }
+
+        .mission-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mission-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mission-statement {
+            font-size: 1.4rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .mission-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-point {
+            text-align: left;
+            padding: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-point::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .mission-point:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .mission-point h4 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .mission-point p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Section */
+        .why-choose-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0a0b14 0%, #1e293b 100%);
+            position: relative;
+        }
+
+        .why-choose-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            padding: 120px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: white;
+            color: #1d4ed8;
+            padding: 1.3rem 3rem;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0b14;
+            color: #94a3b8;
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 20px 0;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: #3b82f6;
+            color: white !important;
+            transform: translateY(-2px);
+            border-color: #3b82f6;
+        }
+
+        .social-link:hover i {
+            color: white !important;
+        }
+
+        .social-link i {
+            font-size: 16px;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .mission-points {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2,
+            .story-text h2,
+            .mission-content h2,
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 11, 20, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                gap: 1.5rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+                border-radius: 10px;
+                width: 180px;
+                text-align: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="Images/logo.png" alt="Sentry Web Solutions" class="logo-image">
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="services.html" class="nav-link" onclick="trackServiceView('from_about_nav')">Services</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / About Us
+            </div>
+            <h1>About Sentry Web Solutions</h1>
+            <p class="subtitle">We're a next-generation web development company specializing in high-performance, conversion-optimized websites that transform businesses through cutting-edge technology.</p>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid reveal">
+                <div class="story-text">
+                    <h2>Our Story</h2>
+                    <p>Founded with a vision to revolutionize how businesses connect with their customers online, Sentry Web Solutions emerged from a simple belief: every business deserves a website that not only looks exceptional but drives real, measurable results.</p>
+                    
+                    <p>In today's digital landscape, a website isn't just a digital business card, it's your most powerful sales tool, and growth engine. We've made it our mission to create web experiences that don't just meet industry standards, they set new ones.</p>
+                    
+                    <p>Our approach combines cutting-edge technology with proven business strategy, ensuring every project we deliver accelerates our client's growth and competitive advantage.</p>
+                    
+                    <div class="story-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">⚡</div>
+                            <span>Elite development practices with enterprise-grade solutions</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🎯</div>
+                            <span>Conversion-focused design that maximizes ROI</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🚀</div>
+                            <span>Rapid deployment with 2-hour response guarantee</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🔒</div>
+                            <span>High-level security and 99.9% uptime reliability</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-visual">
+                    <img src="Images/about.png" alt="About Sentry Web Solutions" class="story-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content reveal">
+                <h2>Our Mission</h2>
+                <div class="mission-statement">
+                    To empower businesses with next-generation web solutions that drive exponential growth. We don't just build websites, we create digital ecosystems that transform how our clients compete, connect, and convert in the modern marketplace.
+                </div>
+                
+                <div class="mission-points">
+                    <div class="mission-point">
+                        <h4>Innovation First</h4>
+                        <p>We leverage the latest technologies including AI integration, advanced analytics, and cloud-native architectures to keep our clients ahead of the competition.</p>
+                    </div>
+                    <div class="mission-point">
+                        <h4>Results Driven</h4>
+                        <p>Every design decision is backed by data and focused on driving measurable business outcomes—from increased conversions to enhanced user engagement.</p>
+                    </div>
+                    <div class="mission-point">
+                        <h4>Elite Partnership</h4>
+                        <p>We work as an extension of your team, providing strategic guidance and technical expertise to accelerate your digital transformation.</p>
+                    </div>
+                    <div class="mission-point">
+                        <h4>Uncompromising Quality</h4>
+                        <p>Our commitment to excellence means delivering enterprise-grade solutions with meticulous attention to performance, security, and user experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Why Choose Sentry Web Solutions</h2>
+                <p>Here's what sets us apart as the premier choice for businesses serious about digital excellence</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item reveal">
+                    <div class="feature-number">1</div>
+                    <h4 class="feature-title">Elite Technical Expertise</h4>
+                    <p class="feature-description">Our team masters cutting-edge frameworks like React, Next.js, and cloud architectures to deliver solutions that scale with your ambitions.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <div class="feature-number">2</div>
+                    <h4 class="feature-title">Business-First Strategy</h4>
+                    <p class="feature-description">We think like business owners, not just developers. Every technical decision is made with your growth objectives and market positioning in mind.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <div class="feature-number">3</div>
+                    <h4 class="feature-title">Lightning-Fast Delivery</h4>
+                    <p class="feature-description">Our streamlined processes and 2-hour response guarantee ensure your project moves at the speed of opportunity.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <div class="feature-number">4</div>
+                    <h4 class="feature-title">Conversion Optimization</h4>
+                    <p class="feature-description">Every pixel, interaction, and user journey is optimized for maximum conversion rates and revenue generation.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <div class="feature-number">5</div>
+                    <h4 class="feature-title">Ongoing Partnership</h4>
+                    <p class="feature-description">We're committed to your long-term success with continuous optimization, security updates, and strategic guidance.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <div class="feature-number">6</div>
+                    <h4 class="feature-title">Transparent Excellence</h4>
+                    <p class="feature-description">Clear communication, honest timelines, and results-driven reporting keep you informed and confident throughout our partnership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2>Ready to Work Together?</h2>
+                <p>Let's discuss your project and explore how we can accelerate your business growth through exceptional web solutions. We're excited to learn about your vision and deliver results that exceed expectations.</p>
+                <a href="contact.html" class="cta-button" onclick="trackCTAClick('start_project')">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SENTRY WEB SOLUTIONS</h3>
+                    <p>Next-generation web development company specializing in high-performance, conversion-optimized websites that drive real business results.</p>
+                    <p><strong>Elite Development Services</strong><br>Transforming businesses through technology</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="mailto:sentrywebsolutions@gmail.com" class="social-link" aria-label="Email" onclick="trackEmailClick()"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.instagram.com/sentrywebsolutions/" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="tel:+16128032135" class="social-link" aria-label="Phone" onclick="trackPhoneCall()"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html" onclick="trackServiceView('from_about_footer')">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="Legal/Privacy_Policy.pdf" target="_blank">Privacy Policy</a></li>
+                        <li><a href="Legal/Terms_of_Service.pdf" target="_blank">Terms of Service</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#hours">Business Hours</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Get Started</h3>
+                    <p>📧 <a href="mailto:sentrywebsolutions@gmail.com" onclick="trackEmailClick()">sentrywebsolutions@gmail.com</a></p>
+                    <p>📞 <a href="tel:+16128032135" onclick="trackPhoneCall()">(612) 803-2135</a></p>
+                    <p>📱 <a href="tel:+16126668452" onclick="trackPhoneCall()">(612) 666-8452</a></p>
+                    <p><strong>Business Hours:</strong> 8AM - 6PM CST</p>
+                    <p><strong>Response Time:</strong> Within 2 hours (business hours)</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sentry Web Solutions. All rights reserved. | Professional Web Development Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Mobile menu toggle
+        function setupMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Scroll reveal animation
+        function setupScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            setupMobileMenu();
+            setupScrollReveal();
+        });
+
+        // Event listeners
+        window.addEventListener('scroll', handleNavbarScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
